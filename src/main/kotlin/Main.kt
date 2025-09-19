@@ -27,10 +27,12 @@ fun changeCouleur(message: String, couleur:String=""): String {
     }
     return "$codeCouleur$message$reset"
 }
+
 /** variables des dresseurs */
 
 var joueur = Entraineur(1, "Sacha", 100)
 var rival = Entraineur(2, "Regis", 100)
+
 
 
 /** variables des monstres */
@@ -97,30 +99,35 @@ var Aquamy= EspeceMonstre(
 )
 
 
+
 /** variables des zones */
 
 var zone1 = Zone(
     1,
     "route 1",
     800,
-    mutableListOf(Springleaf),
-    zone2,
-    null
+//    mutableListOf(Springleaf),
+//    zone2,
+//    null
     )
 
-var zone2 = Zone(
+var zone2 = Zone (
     2,
     "route 2",
     1500,
-    mutableListOf(Flamkip),
-    null,
-    zone1
-
+//    mutableListOf(Flamkip),
+//    null,
+//    zone1
 )
 
 
 
 fun main() {
+
+    zone1.zoneSuivante = zone2
+    zone2.zonePrecedente = zone1
+
+
 //    joueur.afficheDetail()
 //    rival.afficheDetail()
 //    joueur.argents+=50
