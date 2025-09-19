@@ -15,9 +15,9 @@ class individuMonstre(
 
     var niveau: Int = 1
 
-    var attaque: Int = espece.baseAttaque + Random.nextInt(-2, 2)
-    var defense: Int = espece.baseDefense + Random.nextInt(-2, 2)
-    var vitesse: Int = espece.baseVitesse + Random.nextInt(-2, 2)
+    var attaque: Int = espece.baseAttaque + Random.nextInt(-2, 3)
+    var defense: Int = espece.baseDefense + Random.nextInt(-2, 3)
+    var vitesse: Int = espece.baseVitesse + Random.nextInt(-2, 3)
 
     var attaqueSpe: Int = espece.baseAttaqueSpe + Random.nextInt(-2, 3)
     var defenseSpe: Int = espece.baseDefenseSpe + Random.nextInt(-2, 3)

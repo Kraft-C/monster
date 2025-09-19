@@ -133,17 +133,16 @@ fun main() {
 //    joueur.argents+=50
 //    joueur.afficheDetail()
 
+
     /** permet d'afficher les monstres de face */
     println(Springleaf.afficheArt())
     println(Flamkip.afficheArt())
     println(Aquamy.afficheArt())
 
+
     /** permet d'afficher les monstres de dos grace a false*/
-    //    println(Springleaf.afficheArt(false))
-    //    println(Flamkip.afficheArt(false))
-    //    println(Aquamy.afficheArt(false))
-
-
-
+    println(Springleaf.afficheArt(false))
+    println(Flamkip.afficheArt(false))
+    println(Aquamy.afficheArt(false))
 
 }
