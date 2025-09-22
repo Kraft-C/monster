@@ -5,10 +5,10 @@ import kotlin.random.Random
 import kotlin.math.roundToInt
 import kotlin.math.pow
 
-class individuMonstre(
+class IndividuMonstre(
     val id: Int,
     val nom: String,
-    val espece: EspeceMonstre,
+    val espece: Double,
     val entraineur: Entraineur,
     expInit: Double
 ) {
@@ -28,7 +28,27 @@ class individuMonstre(
 
     var exp: Double = 0.0
         get() = field
-        set(value) { field = value }
+        set(value) {
+            // Assigner field = value
+            field = value
+
+            // Vérifier si niveau == 1 et marquer l'état initial
+            val estNiveau1 = (niveau == 1)
+
+            // Si on atteint ou dépasse le palier du niveau actuel, on level-up
+            if (field >= palierExp(niveau)) {
+                // Appeler levelUp() tant que l'exp dépasse les paliers successifs
+                // pour gérer les gros gains d'expérience d'un coup
+                while (field >= palierExp(niveau)) {
+                    levelUp()
+                }
+
+                // Si on n'était pas niveau 1 à l'origine (ou qu'on vient de quitter le niveau 1)
+                if (!estNiveau1) {
+                    println("Le monstre $nom est maintenant niveau $niveau !")
+                }
+            }
+        }
 
     /**
      *  @property pv  Points de vie actuels.
@@ -42,10 +62,8 @@ class individuMonstre(
         }
 
     init {
-        // exp part de 0 puis est modifiée dans le corps du constructeur avec expInit
-        exp = expInit
-        // pv démarre à pvMax
-        pv = pvMax
+        // applique le setter et déclenche un éventuel level-up
+        this.exp = expInit
     }
 
     /**

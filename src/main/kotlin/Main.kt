@@ -1,6 +1,7 @@
 import dresseur.Entraineur
 import monde.Zone
 import monstre.EspeceMonstre
+import monstre.IndividuMonstre
 
 /**
  * Change la couleur du message donné selon le nom de la couleur spécifié.
@@ -144,5 +145,4 @@ fun main() {
     println(Springleaf.afficheArt(false))
     println(Flamkip.afficheArt(false))
     println(Aquamy.afficheArt(false))
-
 }
