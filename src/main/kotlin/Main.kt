@@ -1,4 +1,6 @@
 import dresseur.Entraineur
+import item.Badge
+import item.MonsterKube
 import monde.Zone
 import monstre.EspeceMonstre
 import monstre.IndividuMonstre
@@ -121,13 +123,38 @@ var zone2 = Zone (
 //    zone1
 )
 
+// Objet MonsterKube disponible pour les tests de capture
+val kubeBasique = MonsterKube(
+    id = 100,
+    nom = "Monster Kube",
+    description = "Une sphère permettant de tenter la capture d'un monstre.",
+    chanceCapture = 35.0 // en pourcentage
+)
 
 
 fun main() {
 
+
+
     zone1.zoneSuivante = zone2
     zone2.zonePrecedente = zone1
 
+    // Test temporaire: création d'un Badge
+    val badgePierre = Badge(1, "Badge Roche", "Badge gagné lorsque le joueur atteint la arène de pierre.", rival)
+    println("Badge créé: id=${badgePierre.id}, nom=${badgePierre.nom}, description=${badgePierre.description}, champion=${badgePierre.champion.nom}")
+
+//    // Création de trois monstres pour aperçu de l'affichage détaillé
+//    val monstre1 = IndividuMonstre(1, "Springleaf", Springleaf, joueur, 1500.0)
+//    val monstre2 = IndividuMonstre(2, "Flamkip", Flamkip, joueur, 1500.0)
+//     val monstre3 = IndividuMonstre(3, "Aquamy", Aquamy, joueur, 1500.0)
+//
+//    // Affichage du rendu de la méthode afficheDetail() pour chaque monstre
+//    monstre1.afficheDetail()
+//    println()
+//    monstre2.afficheDetail()
+//    println()
+//    monstre3.afficheDetail()
+//    println()
 
 //    joueur.afficheDetail()
 //    rival.afficheDetail()
@@ -136,13 +163,62 @@ fun main() {
 
 
     /** permet d'afficher les monstres de face */
-    println(Springleaf.afficheArt())
-    println(Flamkip.afficheArt())
-    println(Aquamy.afficheArt())
+//    println(Springleaf.afficheArt())
+//    println(Flamkip.afficheArt())
+//    println(Aquamy.afficheArt())
 
 
     /** permet d'afficher les monstres de dos grace a false*/
-    println(Springleaf.afficheArt(false))
-    println(Flamkip.afficheArt(false))
-    println(Aquamy.afficheArt(false))
+//    println(Springleaf.afficheArt(false))
+//    println(Flamkip.afficheArt(false))
+//    println(Aquamy.afficheArt(false))
+
+//    val monstre1 = IndividuMonstre(1, "Springleaf", Springleaf, joueur, 1500.0)
+//    val monstre2 = IndividuMonstre(2, "Flamkip", Flamkip, joueur, 1500.0)
+//    val monstre3 = IndividuMonstre(3, "Aquamy", Aquamy, joueur, 1500.0)
+
+
+    /** Vérifications niveau et statistiques > bases */
+//    fun printStats(m: IndividuMonstre) {
+//        println("--- ${m.nom} (niveau ${m.niveau}) ---")
+//        println("Attaque: ${m.attaque} (base ${m.espece.baseAttaque})")
+//        println("Défense: ${m.defense} (base ${m.espece.baseDefense})")
+//        println("Vitesse: ${m.vitesse} (base ${m.espece.baseVitesse})")
+//        println("AttaqueSpe: ${m.attaqueSpe} (base ${m.espece.baseAttaqueSpe})")
+//        println("DéfenseSpe: ${m.defenseSpe} (base ${m.espece.baseDefenseSpe})")
+//        println("pv: ${m.pv}/${m.pvMax} (base ${m.espece.basePv})")
+//        println()
+//    }
+//
+//    listOf(monstre1, monstre2, monstre3).forEach { m ->
+//        printStats(m)
+//        val lvlOk = m.niveau >= 5
+//        val statsOk = m.attaque > m.espece.baseAttaque && m.defense > m.espece.baseDefense &&
+//                m.vitesse > m.espece.baseVitesse && m.attaqueSpe > m.espece.baseAttaqueSpe &&
+//                m.defenseSpe > m.espece.baseDefenseSpe && m.pvMax > m.espece.basePv
+//        println("Niveau >= 5: $lvlOk, Stats > base: $statsOk")
+//        println()
+//    }
+//
+//    // Tester le setter d'expérience: on augmente fortement l'XP pour forcer des level-ups
+//
+//    println("== Test setter exp ==")
+//    monstre1.exp += 1000.0 // devrait déclencher des level-up si palier atteint
+//    monstre2.exp += 2000.0
+//    monstre3.exp += 3000.0
+//
+//    listOf(monstre1, monstre2, monstre3).forEach { m ->
+//        println("Après gain d'XP -> ${m.nom} est niveau ${m.niveau}")
+//        printStats(m)
+//    }
+//
+//    // Tester bornes des PV
+//
+//    println("== Test bornes PV ==")
+//    val m = monstre1
+//    val pvMaxOriginal = m.pvMax
+//    m.pv = -999
+//    println("PV après tentative <0: ${m.pv} (attendu 0)")
+//    m.pv = pvMaxOriginal + 999
+//    println("PV après tentative >pvMax: ${m.pv} (attendu ${m.pvMax})")
 }

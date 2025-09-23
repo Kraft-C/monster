@@ -5,10 +5,10 @@ import kotlin.random.Random
 import kotlin.math.roundToInt
 import kotlin.math.pow
 
-class IndividuMonstre(
+public final class IndividuMonstre(
     val id: Int,
-    val nom: String,
-    val espece: Double,
+    var nom: String,
+    val espece: EspeceMonstre,
     val entraineur: Entraineur,
     expInit: Double
 ) {
@@ -109,5 +109,82 @@ class IndividuMonstre(
         pvMax += deltaPvMax
 
         pv += deltaPvMax
+    }
+
+    /**
+     * Attaque un autre [IndividuMonstre] et inflige des dégâts.
+     *
+     * Les dégâts sont calculés de manière très simple pour le moment :
+     * `dégâts = attaque - (défense / 2)` (minimum 1 dégât).
+     *
+     * @param cible Monstre cible de l'attaque.
+     * @return Les dégâts effectivement infligés.
+     */
+    
+    fun attaquer(cible: IndividuMonstre): Int {
+
+        val degatBrut: Int = this.attaque
+        var degatTotal: Int = degatBrut - (cible.defense / 2)
+
+        if (degatTotal < 1) degatTotal = 1
+
+        val pvAvant = cible.pv
+
+        cible.pv -= degatTotal
+
+        val pvApres = cible.pv
+        val infliges = pvAvant - pvApres
+
+        println("$nom inflige $infliges dégâts à ${cible.nom}")
+
+        return infliges
+    }
+
+    /**
+     * Affiche les caractéristiques détaillées du monstre et son art ASCII côte à côte.
+     * Implémente l'algorithme du diagramme: découpe en lignes, calcul des largeurs, padding et rendu ligne par ligne.
+     */
+    fun afficheDetail() {
+        // Obtenir l'art ASCII
+        val art = espece.afficheArt(true)
+        val artLines = art.lines()
+
+        // Construire les lignes de détails
+        val separateur = "=".repeat(40)
+        val details = buildList {
+            add(separateur)
+            add("Nom: $nom    Niveau: $niveau")
+            add("Exp: $exp")
+            add("PV: $pv / $pvMax")
+            add(separateur)
+            add("Atq: $attaque    Def: $defense    Vitesse: $vitesse")
+            add("AtqSpe: $attaqueSpe    DefSpe: $defenseSpe")
+            add(separateur)
+        }
+
+        // Calculs de largeur et de nombre de lignes
+        val maxArtWidth = artLines.maxOfOrNull { it.length } ?: 0
+        val maxLines = maxOf(artLines.size, details.size)
+
+        // Affichage côte à côte
+        for (i in 0 until maxLines) {
+            val artLine = if (i < artLines.size) artLines[i] else ""
+            val detailLine = if (i < details.size) details[i] else ""
+            val paddedArt = artLine.padEnd(maxArtWidth + 4)
+            println(paddedArt + detailLine)
+        }
+    }
+}
+
+/**
+ * Demande au joueur de renommer le monstre.
+ * Si l'utilisateur entre un texte vide, le nom n'est pas modifié.
+ */
+
+fun renommerMonstre(monstre: IndividuMonstre) {
+    print("Renommer ${monstre.nom} ? ")
+    val nouveauNom = readLine()?.trim().orEmpty()
+    if (nouveauNom.isNotEmpty()) {
+        monstre.nom = nouveauNom
     }
 }
