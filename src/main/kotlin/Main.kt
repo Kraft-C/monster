@@ -135,7 +135,6 @@ val kubeBasique = MonsterKube(
 fun main() {
 
 
-
     zone1.zoneSuivante = zone2
     zone2.zonePrecedente = zone1
 

@@ -13,4 +13,5 @@ class Zone (
     //TODO - faire la méthode genereMonstre()
     //TODO - faire la méthode rencontreMonstre()
 ) {
+    val rencontreMonstre: Nothing
 }

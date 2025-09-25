@@ -25,6 +25,18 @@ class Entraineur(
 ) {
 
     /**
+     * Vérifie si le joueur a perdu le combat.
+     *
+     * Condition de défaite :
+     * - Aucun monstre de l'équipe du joueur n'a de PV > 0.
+     *
+     * @return `true` si le joueur a perdu, sinon `false`.
+     */
+    fun gameOver(): Boolean {
+        return equipeMonstre.none { it.pv > 0 }
+    }
+
+    /**
      * Affiche les détails de l'entraîneur, y compris son nom et la quantité d'argent en sa possession.
      *
      * Cette méthode affiche les informations de l'entraîneur sous la forme de deux lignes :
