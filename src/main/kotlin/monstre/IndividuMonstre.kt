@@ -5,7 +5,7 @@ import kotlin.random.Random
 import kotlin.math.roundToInt
 import kotlin.math.pow
 
-public final class IndividuMonstre(
+class IndividuMonstre(
     val id: Int,
     var nom: String,
     val espece: EspeceMonstre,

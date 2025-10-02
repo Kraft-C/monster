@@ -3,6 +3,7 @@ import item.Badge
 import item.MonsterKube
 import monde.Zone
 import monstre.EspeceMonstre
+import java.util.Scanner
 import monstre.IndividuMonstre
 
 /**
@@ -35,7 +36,6 @@ fun changeCouleur(message: String, couleur:String=""): String {
 
 var joueur = Entraineur(1, "Sacha", 100)
 var rival = Entraineur(2, "Regis", 100)
-
 
 
 /** variables des monstres */
@@ -102,18 +102,16 @@ var Aquamy= EspeceMonstre(
 )
 
 
-
 /** variables des zones */
 
 var zone1 = Zone(
     1,
     "route 1",
-    800,
-//    mutableListOf(Springleaf),
+    600,
+    mutableListOf(Springleaf, Flamkip),
 //    zone2,
 //    null
     )
-
 var zone2 = Zone (
     2,
     "route 2",
@@ -123,6 +121,7 @@ var zone2 = Zone (
 //    zone1
 )
 
+
 // Objet MonsterKube disponible pour les tests de capture
 val kubeBasique = MonsterKube(
     id = 100,
@@ -130,6 +129,35 @@ val kubeBasique = MonsterKube(
     description = "Une sphère permettant de tenter la capture d'un monstre.",
     chanceCapture = 35.0 // en pourcentage
 )
+
+// Classe Partie
+class Partie(val joueur: String, var score: Int = 0) {
+    override fun toString(): String {
+        return "Partie du joueur $joueur (score: $score)"
+    }
+}
+
+// Fonction nouvellePartie()
+fun nouvellePartie(): Partie {
+    val scanner = Scanner(System.`in`)
+    println("Bienvenue dans le jeu ! 🎮")
+    print("Entrez le nom du joueur : ")
+
+    var nom = scanner.nextLine().trim()
+    if (nom.isEmpty()) {
+        nom = "Joueur1" // valeur par défaut
+    }
+
+    val partie = Partie(nom)
+    println("Nouvelle partie créée pour ${partie.joueur} !")
+    return partie
+}
+
+// Exemple d’utilisation
+fun main() {
+    val maPartie = nouvellePartie()
+    println(maPartie)
+}
 
 
 fun main() {

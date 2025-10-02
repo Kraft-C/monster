@@ -1,11 +1,12 @@
 package jeu
 
-import jeu.CombatMonstre
 import dresseur.Entraineur
 import monde.Zone
-import monstre.IndividuMonstre
 import monstre.EspeceMonstre
+import monstre.IndividuMonstre
 import monstre.renommerMonstre
+import jeu.CombatMonstre
+import zone1
 
 class Partie(
     var id: Int,
@@ -35,7 +36,8 @@ class Partie(
                 "1" -> {
                     try {
                         // Peut ne rien faire si la zone n'a pas encore implémenté rencontreMonstre
-                        zone.rencontreMonstre
+                        zone.CombatMonstre
+
                     } catch (e: Throwable) {
                         println("Action indisponible: ${e.message}")
                     }
@@ -242,6 +244,8 @@ class Partie(
             } else {
                 println("Choix invalide, veuillez recommencer.")
             }
+
+
         }
     }
 }
